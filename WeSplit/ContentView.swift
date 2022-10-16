@@ -13,7 +13,9 @@ struct ContentView: View {
     @State private var tipPercentage = 15
     @FocusState private var isTextFieldFocused: Bool
     
-    let tipPercentages = [10, 15, 20, 25, 0]
+    //Tip array providing a wider range of tips(multiples of 5)
+    let tipPercentages = Array((stride(from: 0, to: 105, by: 5)))
+    
     
     var totalTipPerPerson: Double {
         let numberOfPersons = Double(personCount + 2)
@@ -49,7 +51,7 @@ struct ContentView: View {
                     
                     Section{
                         Picker("Tip Percentage", selection: $tipPercentage) {
-                            ForEach(tipPercentages, id: \.self) {
+                            ForEach(tipPercentages, id: \.self){
                                 Text($0, format: .percent)
                             }
                         }
